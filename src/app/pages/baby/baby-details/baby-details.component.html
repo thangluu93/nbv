@@ -1,0 +1,484 @@
+<div id="baby-content">
+    <div class="action-btn">
+        <button (click)="back()" type="button" class="btn btn-primary btn-sm">{{isEng? 'Back': 'Quay lại'}}</button>
+    </div>
+    <div class="title-bg">
+        <span *ngIf="isEng">baby</span>
+        <span *ngIf="!isEng">bệnh nhi</span>
+    </div>
+    <div class="baby-info">
+
+        <div class="row-info row container-fluid" *ngIf="baby.id||baby.input_id">
+            <label class="col-sm-3 col-form-label">{{isEng? 'Unique Identifier': 'ID'}} <br>{{isEng? 'Mother\'s name + DOB (DDMMYYYY)':'Tên mẹ + ngày sinh bệnh nhi (DDMMYYYY)'}}</label>
+            <div class="col-sm-7">
+                <input [disabled]="routerParams['sys_id']" [(ngModel)]="baby.id||baby.input_id"
+                       (ngModelChange)="baby.id = baby.id.toUpperCase();
+                       baby.input_id = baby.input_id.toUpperCase()"
+                       class="form-control form-control-sm"
+                       placeholder="Example: NGUYENA01012021">
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Mother Name</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Tên mẹ</label>
+            <div class="col-sm-7">
+                <input [disabled]="routerParams['sys_id']" [(ngModel)]="baby.mother_name"
+                       class="form-control form-control-sm"
+                       placeholder="Nguyen Thi A">
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time of birth</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ sinh</label>
+            <div class="col-sm-7">
+                <input [value]="formattedDOB| date: 'dd/MM/yyyy HH:mm'"
+                       [owlDateTimeTrigger]="dt8">
+                <input class="hidden-input-time" [owlDateTime]="dt8" [(ngModel)]="formattedDOB">
+                <owl-date-time #dt8></owl-date-time>
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Place of booking</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nơi dự kiến sinh</label>
+
+            <div class="col-sm-7">
+                <nz-cascader style="width: 100%; text-align: left"
+                             [(ngModel)]="baby.place_booking"
+                             [nzOptions]="listTypeHospital.place_booking"
+                             [nzShowSearch]="true"
+                             [nzShowInput]="true"></nz-cascader>
+
+            </div>
+        </div>
+
+
+        <div class="row-info row container-fluid" *ngIf="baby.place_booking && baby.place_booking[1] === 1">
+            <label class="col-sm-3 col-form-label">{{isEng ? 'Place of booking - Hospital name' : 'Tên bệnh viện dự kiến sinh'}}</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="baby.place_booking_other" type="text" class="form-control form-control-sm">
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Place of birth</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nơi sinh</label>
+            <div class="col-sm-7">
+                <!--                <select [(ngModel)]="baby.place_birth" class="form-control form-control-sm">-->
+
+                <!--                    <option *ngFor="let hos of listTypeHospital.place_birth" [ngValue]="hos.id">{{hos.name}}</option>-->
+
+                <!--                </select>-->
+                <nz-cascader style="width: 100%; text-align: left"
+                             [(ngModel)]="baby.place_birth"
+                             [nzOptions]="listTypeHospital.place_birth"
+                             [nzShowSearch]="true"
+                             [nzShowInput]="true"></nz-cascader>
+
+            </div>
+        </div>
+
+
+
+        <div class="row-info row container-fluid" *ngIf="baby.place_birth && baby.place_birth[1] === 1">
+            <label class="col-sm-3 col-form-label">{{isEng ? 'Place of birth - Hospital name' : 'Tên bệnh viện nơi sinh'}}</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="baby.place_birth_other" type="text" class="form-control form-control-sm">
+            </div>
+        </div>
+
+        <!--        <div class="row-info row container-fluid">-->
+        <!--            <label class="col-sm-3 col-form-label">Local hospital ID (if exist)</label>-->
+        <!--            <div class="col-sm-7">-->
+        <!--                <input [(ngModel)]="baby.local_hospital_id" class="form-control form-control-sm" placeholder="Type...">-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <div class="row-info row container-fluid">
+
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Gender</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Giới tính</label>
+            <div class="col-sm-2">
+                <select [(ngModel)]="baby.gender" class="form-control form-control-sm">
+                    <option [ngValue]="1" *ngIf="isEng">Male</option>
+                    <option [ngValue]="1" *ngIf="!isEng">Nam</option>
+                    <option [ngValue]="2" *ngIf="isEng">Female</option>
+                    <option [ngValue]="2" *ngIf="!isEng">Nữ</option>
+                    <option [ngValue]="3" *ngIf="isEng">Indeterminate</option>
+                    <option [ngValue]="3" *ngIf="!isEng">Chưa xác định được</option>
+                    <option [ngValue]="99" *ngIf="isEng">Unknown</option>
+                    <option [ngValue]="99" *ngIf="!isEng">Không rõ</option>
+
+                </select>
+            </div>
+
+            <label class="col-sm-1 col-form-label" *ngIf="isEng">Birth weight (g)</label>
+            <label class="col-sm-1 col-form-label" *ngIf="!isEng">Cân nặng lúc sinh (g)</label>
+            <div class="col-sm-1">
+                <input [(ngModel)]="baby.birth_weight" type="number" min="300" max="7000"
+                       class="form-control form-control-sm">
+            </div>
+
+            <label class="col-sm-1 col-form-label" *ngIf="isEng">Gestation (weeks)</label>
+            <label class="col-sm-1 col-form-label" *ngIf="!isEng">Tuổi thai (tuần)</label>
+            <div class="col-sm-1">
+                <input [(ngModel)]="baby.gestation" type="number" min="20" max="50"
+                       class="form-control form-control-sm">
+            </div>
+
+
+            <!--            <label class="col-sm-2 col-form-label">Head circumference at birth (cms)</label>-->
+            <!--            <div class="col-sm-1">-->
+            <!--                <input [(ngModel)]="baby.head_circumference" type="number" min="20" max="60" step="0.1" class="form-control form-control-sm">-->
+            <!--            </div>-->
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Multiple birth</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Đa thai?</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="baby.multiple_birth">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="baby.multiple_birth">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Which number baby is this?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ là con thứ mấy?</label>
+        <div class="col-sm-7">
+            <select [(ngModel)]="baby.multiple_count" class="form-control form-control-sm">
+
+                <option [ngValue]="1">1</option>
+                <option [ngValue]="2">2</option>
+                <option [ngValue]="3">3</option>
+                <option [ngValue]="4">4</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="title-bg">
+        <span>{{isEng? 'pregnancy & delivery': 'MANG THAI & SINH NỞ'}}</span>
+    </div>
+    <div class="pregnancy-delivery">
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Mother's age at time of delivery (years)</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Tuổi của mẹ (ở thời điểm sinh)</label>
+            <div class="col-sm-1">
+                <input [(ngModel)]="baby.mother_age" type="number" min="15" max="50"
+                       class="form-control form-control-sm">
+            </div>
+
+            <label class="col-sm-2 col-form-label" *ngIf="isEng">Number of previous pregnancies</label>
+            <label class="col-sm-2 col-form-label" *ngIf="!isEng">Số lần mang thai trước đây</label>
+            <div class="col-sm-1">
+                <input [(ngModel)]="baby.mother_prev_pregnancy" type="number" min="0" max="15"
+                       class="form-control form-control-sm">
+            </div>
+            <label class="col-sm-2 col-form-label" *ngIf="isEng">Number of other live babies</label>
+            <label class="col-sm-2 col-form-label" *ngIf="!isEng">Số con khác còn sống</label>
+            <div class="col-sm-1">
+                <input [(ngModel)]="baby.mother_other_lives" type="number" min="0" max="15"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Expected date of delivery</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày dự kiến sinh</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="baby.expect_delivery"
+                       [owlDateTimeTrigger]="dt81" [owlDateTime]="dt81">
+                <owl-date-time #dt81 [pickerType]="'calendar'"></owl-date-time>
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Presentation</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Presentation</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="baby.presentation" class="form-control form-control-sm">
+                    <option [ngValue]="1" *ngIf="isEng">Cephalic</option>
+                    <option [ngValue]="1" *ngIf="!isEng">Ngôi đầu</option>
+                    <option [ngValue]="2" *ngIf="isEng">Breech</option>
+                    <option [ngValue]="2" *ngIf="!isEng">Ngôi mông</option>
+                    <option [ngValue]="3" *ngIf="isEng">Other</option>
+                    <option [ngValue]="3" *ngIf="!isEng">Khác</option>
+                    <option [ngValue]="99" *ngIf="isEng">Not known</option>
+                    <option [ngValue]="99" *ngIf="!isEng">Không rõ</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Delivery</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Cách đẻ</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="baby.delivery" class="form-control form-control-sm">
+
+                    <option [ngValue]="1" *ngIf="isEng">Spontaneous vaginal</option>
+                    <option [ngValue]="1" *ngIf="!isEng">Đẻ thường chuyển dạ tự nhiên</option>
+                    <option [ngValue]="2" *ngIf="isEng">Instrumental vaginal</option>
+                    <option [ngValue]="2" *ngIf="!isEng">Đẻ thường có sử dụng dụng cụ</option>
+                    <option [ngValue]="3" *ngIf="isEng">C section in labour</option>
+                    <option [ngValue]="3" *ngIf="!isEng">Đẻ mổ có chuyển dạ</option>
+                    <option [ngValue]="4" *ngIf="isEng">C section no labour</option>
+                    <option [ngValue]="4" *ngIf="!isEng">Đẻ mổ không có chuyển dạ</option>
+                    <option [ngValue]="99" *ngIf="isEng">Not Known</option>
+                    <option [ngValue]="99" *ngIf="!isEng">Không rõ</option>
+                </select>
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was there delayed cord clamping?</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được kẹp rốn muộn không?</label>
+            <div class="col-sm-2">
+                <select [(ngModel)]="baby.delay_cord_clamping" class="form-control form-control-sm">
+
+                    <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                    <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                    <option [ngValue]="false" *ngIf="isEng">No</option>
+                    <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                    <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                    <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+                </select>
+            </div>
+
+
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Number of minutes of delayed clamping</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Số phút kẹp rốn muộn</label>
+            <div class="col-sm-2">
+                <input [(ngModel)]="baby.minutes_delayed_clamping" type="number"
+                       [disabled]="baby.delay_cord_clamping!=true"
+                       min="0" max="10"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was there skin to skin given at delivery?</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được tiếp xúc da-kề-da lúc sinh
+                không?</label>
+            <div class="col-sm-2">
+                <select [(ngModel)]="baby.skin_to_skin" class="form-conProblems in pregnancytrol form-control-sm">
+                    <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                    <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                    <option [ngValue]="false" *ngIf="isEng">No</option>
+                    <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                    <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                    <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+                </select>
+            </div>
+
+
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Number of minutes of skin to skin</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Số phút được tiếp xúc da-kề-da</label>
+            <div class="col-sm-2">
+                <input [(ngModel)]="baby.minutes_skin_to_skin" type="number"
+                       [disabled]="baby.skin_to_skin!==true"
+                       min="0" max="10"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was breast feeding initiated at delivery?</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được bú mẹ ngay lúc sinh không?</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="baby.breast_feeding" class="form-control form-control-sm">
+                    <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                    <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                    <option [ngValue]="false" *ngIf="isEng">No</option>
+                    <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                    <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                    <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+                    <option [ngValue]="null">Not Known</option>
+                    <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was CPAP given at delivery?</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có phải thở CPAP lúc sinh không?</label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="baby.cpapn_given" class="form-control form-control-sm">
+                    <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                    <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                    <option [ngValue]="false" *ngIf="isEng">No</option>
+                    <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                    <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                    <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+
+                </select>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Antibiotics given to mother in labour</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các loại kháng sinh mẹ dùng lúc sinh</label>
+        <div class="col-sm-7">
+            <select [(ngModel)]="baby.antibiotics" class="form-control form-control-sm">
+                <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                <option [ngValue]="false" *ngIf="isEng">No</option>
+                <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Did mother receive any steroids before
+            delivery?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Mẹ có phải sử dụng steroids trước sinh không?</label>
+        <div class="col-sm-7">
+            <select [(ngModel)]="baby.steroids" class="form-control form-control-sm">
+                <option [ngValue]="true" *ngIf="isEng">Yes</option>
+                <option [ngValue]="true" *ngIf="!isEng">Có</option>
+                <option [ngValue]="false" *ngIf="isEng">No</option>
+                <option [ngValue]="false" *ngIf="!isEng">Không</option>
+                <option [ngValue]="null" *ngIf="isEng">Not Known</option>
+                <option [ngValue]="null" *ngIf="!isEng">Không rõ</option>
+            </select>
+
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Problems in pregnancy</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các vấn đề trong thai kỳ</label>
+        <div class="col-sm-7">
+            <div class="col-sm-7 check-box">
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="baby.problems.length!=0 && !isIncludeNoneProblem()"
+                           (change)="changeProblems()"
+                           type="checkbox"
+                           class="custom-control-input problems-check" id="1">
+                    <label class="custom-control-label" for="1" *ngIf="isEng">None</label>
+                    <label class="custom-control-label" for="1" *ngIf="!isEng">Không có</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="2">
+                    <label class="custom-control-label" for="2" *ngIf="isEng">Smoking</label>
+                    <label class="custom-control-label" for="2" *ngIf="!isEng">Hút thuốc</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="3">
+                    <label class="custom-control-label" for="3" *ngIf="isEng">Alcohol</label>
+                    <label class="custom-control-label" for="3" *ngIf="!isEng">Uống rượu/bia</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="4">
+                    <label class="custom-control-label" for="4" *ngIf="isEng">Pre eclampsia</label>
+                    <label class="custom-control-label" for="4" *ngIf="!isEng">Tiền sản giật</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="5">
+                    <label class="custom-control-label" for="5" *ngIf="isEng">Hypertension</label>
+                    <label class="custom-control-label" for="5" *ngIf="!isEng">Cao huyết áp</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="6">
+                    <label class="custom-control-label" for="6" *ngIf="isEng">Diabetes</label>
+                    <label class="custom-control-label" for="6" *ngIf="!isEng">Đái tháo đường</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="7">
+                    <label class="custom-control-label" for="7" *ngIf="isEng">Prolonged rupture of membranes</label>
+                    <label class="custom-control-label" for="7" *ngIf="!isEng">Vỡ ối sớm</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="8">
+                    <label class="custom-control-label" for="8" *ngIf="isEng">Maternal pyrexia in labour</label>
+                    <label class="custom-control-label" for="8" *ngIf="!isEng">Mẹ sốt lúc sinh</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="9">
+                    <label class="custom-control-label" for="9" *ngIf="isEng">Chorioamnionitis/infection</label>
+                    <label class="custom-control-label" for="9" *ngIf="!isEng">Viêm màng ối/nhiễm trùng</label>
+                </div>
+                <div class="custom-control-check custom-checkbox">
+                    <input [disabled]="isIncludeNoneProblem()" (change)="changeProblems()" type="checkbox"
+                           class="custom-control-input problems-check" id="10">
+                    <label class="custom-control-label" for="10" *ngIf="isEng">Other ...</label>
+                    <label class="custom-control-label" for="10" *ngIf="!isEng">Khác ...</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Other problems</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các vấn đề khác</label>
+        <div class="col-sm-7">
+            <input [disabled]="baby.problems.indexOf(10)===-1"
+                   [(ngModel)]="baby.problem_other" type="text"
+                   class="form-control form-control-sm"
+                   placeholder="Type...">
+        </div>
+    </div>
+</div>
+<div class="action-btn">
+    <div class="row-info row container-fluid">
+        <div class="col-sm-10">
+            <button (click)="addEpisode()" *ngIf="canAddEpisode && this.babySysID && !showEpisode" type="button"
+                    class="btn btn-primary btn-sm float-right">
+
+                {{isEng ? 'Add Episode' : 'Thêm episode'}}
+            </button>
+            <button *ngIf="!showEpisode" (click)="createBaby(true)" type="button"
+                    class="btn btn-success btn-sm float-right">
+                {{isEng ? 'Save' : 'Lưu'}}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%;display: flex; flex-direction: column; justify-content: center; text-align: center">
+    <div *ngFor="let ep of baby.all_episodes">
+        <span *ngIf="!ep.viewable"> {{ep.title}} </span>
+    </div>
+</div>
+
+<mat-tab-group mat-stretch-tabs *ngIf="this.allEpisode.length > 0 || newEp" #allTabsEpisodes
+               [(selectedIndex)]="selectedTabsIndex">
+    <mat-tab *ngFor="let ep of allEpisode" label="{{ep.title}}">
+        <ng-template matTabContent>
+            <app-baby-episode
+                    [allEpisodes]="allEpisode" [listTypeHospital]="listTypeHospital"
+                    [createNewBaby]="createBabyFunc"
+                    [allEpId]="allEpID"
+                    [isInEpisode]="!canAddEpisode"
+                    [babyDOB]="baby.birthday" [babyId]="babySysID"
+                    [epId]="ep.id"></app-baby-episode>
+        </ng-template>
+
+    </mat-tab>
+    <mat-tab label="New Episode" *ngIf="newEp">
+        <ng-template matTabContent>
+            <app-baby-episode [allEpisodes]="allEpisode" [listTypeHospital]="listTypeHospital"
+                              [createNewBaby]="createBabyFunc"
+                              [allEpId]="allEpID"
+                              [isInEpisode]="!canAddEpisode"
+                              [babyDOB]="baby.birthday" [babyId]="babySysID"></app-baby-episode>
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>

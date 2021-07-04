@@ -1,0 +1,1379 @@
+<div class="title-bg">
+    <span>discharge</span>
+</div>
+<div id="discharge">
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEngSubscription | async">Ventilation via ET tube</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!(isEngSubscription | async)">Thở máy qua nội khí quản</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.ventilation">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Non invasive respiratory support (inc CPAP)</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Hỗ trợ hô hấp không xâm nhập (bao gồm CPAP)</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.non_invasive">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Surfactant given</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Sử dụng Surfactant
+        </label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.surfactant">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Nasal prong oxygen</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Thở oxy gọng mũi</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.nasal_prong">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Inotropes given</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Sử dụng thuốc vận mạch</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.inotropes">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Jaundice</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Vàng da</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.jaundice">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.jaundice">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Phototherapy</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Chiếu đèn</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.phototherapy">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.jaundice">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Number days phototherapy</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Số ngày chiếu đèn</label>
+        <div class="col-sm-7">
+            <input class="form-control form-control-sm"
+                   type="number"
+                   min="0"
+                   max="50"
+                   [(ngModel)]="dischargeData.day_phototherapy">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.jaundice">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Maximum level of bilirubin</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nồng độ bilirubin cao nhất</label>
+        <div class="col-sm-7">
+            <input class="form-control form-control-sm" placeholder="Type..."
+                   type="number"
+                   min="10"
+                   max="900"
+                   [(ngModel)]="dischargeData.max_bilirubin">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.jaundice">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Exchange transfusion</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Thay máu</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.exchange_transfusion">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Was a blood culture done?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được cấy máu không?</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.is_blood_culture">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="dischargeData.is_blood_culture">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Culture result(s)</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Kết quả cấy máu</label>
+        <div class="col-sm-7 check-box">
+
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()"
+                       type="checkbox"
+                       class="custom-control-input blood_culture_result" id="11" value="1">
+                <label class="custom-control-label" for="11">No growth</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="12" value="2">
+                <label class="custom-control-label" for="12">Coagulase negative staph</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="13" value="3">
+                <label class="custom-control-label" for="13">Staph Aureus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="14" value="4">
+                <label class="custom-control-label" for="14">Group B streptococcus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="15" value="5">
+                <label class="custom-control-label" for="15">Acinetobacter</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="16" value="6">
+                <label class="custom-control-label" for="16">Listeria</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="17" value="7">
+                <label class="custom-control-label" for="17">MRSA</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="18" value="8">
+                <label class="custom-control-label" for="18">Enterococcus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="19" value="9">
+                <label class="custom-control-label" for="19">Other gram positive</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="110" value="10">
+                <label class="custom-control-label" for="110">E Coli</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="111" value="11">
+                <label class="custom-control-label" for="111">Klebsiella</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="112" value="12">
+                <label class="custom-control-label" for="112">Pseudomonas</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="113" value="13">
+                <label class="custom-control-label" for="113">Serratia</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="114" value="14">
+                <label class="custom-control-label" for="114">Other gram negative</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="115" value="15">
+                <label class="custom-control-label" for="115">Candida</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="116" value="16">
+                <label class="custom-control-label" for="116">Other fungal</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems()" type="checkbox"
+                       class="custom-control-input blood_culture_result" id="117" value="17">
+                <label class="custom-control-label" for="117">Other</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'blood_culture_result',9)">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Other gram positive</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Other gram positive</label>
+        <div class="col-sm-7">
+            <input
+
+                    [(ngModel)]="dischargeData.blood_culture_other_g_plus" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'blood_culture_result',14)">
+        <label class="col-sm-3 col-form-label">Other gram negative</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.blood_culture_other_g_minus" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'blood_culture_result',16)">
+        <label class="col-sm-3 col-form-label">Other fungal</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.blood_culture_other_fungal" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'blood_culture_result',17)">
+        <label class="col-sm-3 col-form-label">Other culture result(s)</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.blood_culture_other" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Was another type of culture done?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được cấy bệnh phẩm nào khác không?</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.is_other_blood_culture">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="dischargeData.is_other_blood_culture">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Culture type</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Loại bệnh phẩm</label>
+        <div class="col-sm-7">
+            <mat-select style="text-align: left" class="form-control form-control-sm"
+                        [(ngModel)]="dischargeData.other_blood_culture_type">
+                <mat-option [value]="1">ET secretions</mat-option>
+                <mat-option [value]="2"> CSF</mat-option>
+                <mat-option [value]="3">Other</mat-option>
+            </mat-select>
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.other_blood_culture_type=== 3">
+        <label class="col-sm-3 col-form-label">Other type of Culture Type</label>
+        <div class="col-sm-7">
+            <input [(ngModel)]="dischargeData.other_blood_culture_type_other" type="text" maxlength="15"
+                   class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="dischargeData.is_other_blood_culture">
+        <label class="col-sm-3 col-form-label">Culture result(s)</label>
+        <div class="col-sm-7 check-box">
+
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')"
+                       type="checkbox"
+                       class="custom-control-input another-culture-result" id="21" value="1">
+                <label class="custom-control-label" for="21">No growth</label>
+            </div>
+            <div class="custom-control-check custom-csheckbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="22" value="2">
+                <label class="custom-control-label" for="22">Coagulase negative staph</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="23" value="3">
+                <label class="custom-control-label" for="23">Staph Aureus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="24" value="4">
+                <label class="custom-control-label" for="24">Group B streptococcus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="25" value="5">
+                <label class="custom-control-label" for="25">Acinetobacter</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="26" value="6">
+                <label class="custom-control-label" for="26">Listeria</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="27" value="7">
+                <label class="custom-control-label" for="27">MRSA</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="28" value="8">
+                <label class="custom-control-label" for="28">Enterococcus</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="29" value="9">
+                <label class="custom-control-label" for="29">Other gram positive</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="210" value="10">
+                <label class="custom-control-label" for="210">E Coli</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="211" value="11">
+                <label class="custom-control-label" for="211">Klebsiella</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="212" value="12">
+                <label class="custom-control-label" for="212">Pseudomonas</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="213" value="13">
+                <label class="custom-control-label" for="213">Serratia</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="214" value="14">
+                <label class="custom-control-label" for="214">Haemophilus influenza</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="215" value="15">
+                <label class="custom-control-label" for="215">Elizabethkingia meningoseptica</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="216" value="16">
+                <label class="custom-control-label" for="216">Stenotrophomonas maltophilia</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="217" value="17">
+                <label class="custom-control-label" for="217">Other gram negative</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="218" value="18">
+                <label class="custom-control-label" for="218">Candida</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="219" value="19">
+                <label class="custom-control-label" for="219">Other fungal</label>
+            </div>
+            <div class="custom-control-check custom-checkbox">
+
+                <input (change)="changeProblems('other_blood_culture_result')" type="checkbox"
+                       class="custom-control-input another-culture-result" id="220" value="20">
+                <label class="custom-control-label" for="220">Other</label>
+            </div>
+            <!--                </div>-->
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'other_blood_culture_result',9)">
+        <label class="col-sm-3 col-form-label">Other gram positive</label>
+        <div class="col-sm-7">
+            <input
+
+                    [(ngModel)]="dischargeData.other_blood_culture_g_plus" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'other_blood_culture_result',17)">
+        <label class="col-sm-3 col-form-label">Other gram negative</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.other_blood_culture_g_minus" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'other_blood_culture_result',19)">
+        <label class="col-sm-3 col-form-label">Other fungal</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.other_blood_culture_fungal" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid" *ngIf="isDisable(dischargeData, 'other_blood_culture_result',20)">
+        <label class="col-sm-3 col-form-label">Other culture result(s)</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.other_blood_culture_other" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Were antibiotics given?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được sử dụng kháng sinh không?</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    [(ngModel)]="dischargeData.is_antibiotics"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid" *ngIf="dischargeData.is_antibiotics===true">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Antibiotic(s)</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Loại kháng sinh</label>
+        <div class="col-sm-7">
+            <mat-select class="form-control form-control-sm" [formControl]="antibioticsFormControl" multiple
+                        style="text-align: left" [(ngModel)]="dischargeData.antibiotics_type">
+                <mat-option *ngFor="let option of antibiotics; index as i " [value]="i+1">{{option}}</mat-option>
+            </mat-select>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid" *ngIf="dischargeData.antibiotics_type.indexOf(23)!== -1">
+        <label class="col-sm-3 col-form-label">Other type of Antibiotics</label>
+        <div class="col-sm-7">
+            <input
+                    [(ngModel)]="dischargeData.antibiotics_type_other" type="text" maxlength="15"
+                    class="form-control form-control-sm">
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Cooling</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Điều trị hạ thân nhiệt</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.cooling">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div *ngIf="dischargeData.cooling">
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng"> Was cooling started before admission?</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Trẻ có được bắt đầu hạ thân nhiệt trước khi nhập viện
+                không?</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        [(ngModel)]="dischargeData.cooling_start_before"
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group">
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="true">{{isEng ? 'Yes' : 'Có'}}</mat-radio-button>
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="false">{{isEng ? 'No' : 'Không'}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">What temperature was achieved</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nhiệt độ đạt được là bao nhiêu?</label>
+            <div class="col-sm-7">
+                <input class="form-control form-control-sm"
+                       [(ngModel)]="dischargeData.cooling_temperature"
+                       placeholder="Type..." type="number" min="30" max="40"
+                       step="0.1">
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time start cooling</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ bắt đầu hạ thân nhiệt</label>
+            <div class="col-sm-7">
+                <input [value]="dischargeData.cooling_start | date:'dd/MM/yyyy HH:mm'"
+                       [owlDateTimeTrigger]="dt1" >
+                <input class="hidden-input-time" [(ngModel)]="dischargeData.cooling_start" [owlDateTime]="dt1" >
+                <owl-date-time #dt1></owl-date-time>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng"> Date and time rewarming started</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Date and time rewarming started</label>
+            <div class="col-sm-7">
+                <input [value]="dischargeData.rewarming_start | date:'dd/MM/yyyy HH:mm'"
+                       [owlDateTimeTrigger]="dt2">
+                <input class="hidden-input-time" [(ngModel)]="dischargeData.rewarming_start" [owlDateTime]="dt2" >
+
+                <owl-date-time #dt2></owl-date-time>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time cooling stopped</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ kết thúc hạ thân nhiệt</label>
+            <div class="col-sm-7">
+                <input [value]="dischargeData.cooling_stop | date:'dd/MM/yyyy HH:mm'">
+                <input class="hidden-input-time" [(ngModel)]="dischargeData.cooling_stop" [owlDateTime]="dt3" >
+                <owl-date-time #dt3></owl-date-time>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Cerebral ultrasound</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Siêu âm qua thóp</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.cerebral_ultrasound">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div *ngIf="dischargeData.cerebral_ultrasound">
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label">IVH grade</label>
+            <div class="col-sm-7">
+                <mat-select [(ngModel)]="dischargeData.ivh_grade">
+                    <mat-option [value]="0">0 (No IVH)</mat-option>
+                    <mat-option [value]="1">1</mat-option>
+                    <mat-option [value]="2">2</mat-option>
+                    <mat-option [value]="3">3</mat-option>
+                    <mat-option [value]="4">4</mat-option>
+                </mat-select>
+            </div>
+        </div>
+
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label"> PVL</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.is_pvl">
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="true">{{isEng ? 'Yes' : 'Có'}}</mat-radio-button>
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="false">{{isEng ? 'No' : 'Không'}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label"> Hydrocephalus</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        [(ngModel)]="dischargeData.is_hydrocephalus"
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group">
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="true">{{isEng ? 'Yes' : 'Có'}}</mat-radio-button>
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="false">{{isEng ? 'No' : 'Không'}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <!--                <label class="col-sm-3 col-form-label"> Other</label>-->
+            <!--                <div class="col-sm-7">-->
+            <!--                    <mat-radio-group-->
+            <!--                            [(ngModel)]="dischargeData.cerebral_other"-->
+            <!--                            aria-labelledby="example-radio-group-label"-->
+            <!--                            class="example-radio-group">-->
+            <!--                        <mat-radio-button class="example-radio-button" [value]="true">{{isEng?'Yes':'Có'}}</mat-radio-button>-->
+            <!--                        <mat-radio-button class="example-radio-button" [value]="false">{{isEng?'No':'Không'}}</mat-radio-button>-->
+            <!--                    </mat-radio-group>-->
+
+
+            <!--                </div>-->
+            <label class="col-sm-3 col-form-label"> Other</label>
+            <div class="col-sm-7">
+                <input class="form-control form-control-sm" placeholder="Type..." type="text"
+                       [(ngModel)]="dischargeData.cerebral_other"
+                       maxlength="50">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Cardiac Echo</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Siêu âm tim</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    [(ngModel)]="dischargeData.cardiac_echo"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="dischargeData.cardiac_echo">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Result</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Kết quảs</label>
+        <div class="col-sm-7">
+            <input class="form-control form-control-sm" placeholder="Type..."
+                   [(ngModel)]="dischargeData.cardiac_echo_result">
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Blood products given</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Truyền máu</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    [(ngModel)]="dischargeData.blood_products"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Parenteral nutrition</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Nuôi dưỡng tĩnh mạch</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    [(ngModel)]="dischargeData.parenteral_nutrition"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Date when full milk feeding</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Ngày trẻ ăn sữa hoàn toàn</label>
+        <div class="col-sm-7">
+            <input [(ngModel)]="dischargeData.full_milk_feeding"
+                   [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
+            <owl-date-time #dt4 [pickerType]="'calendar'"></owl-date-time>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Central line(s) (UAC, UVC, central venous line)</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Đường truyền trung tâm (Động mạch rốn, tĩnh mạch rốn,
+            tĩnh mạch trung tâm)</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    [(ngModel)]="dischargeData.central_line"
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+
+</div>
+<div class="title-bg">
+    <span>Neonatal course (completed at discharge)</span>
+</div>
+<div id="neonatal-course">
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time of discharge/referral/death…</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ ra viện/chuyển viện/tử vong...</label>
+        <div class="col-sm-7">
+            <input [value]="dischargeData.discharge | date:'dd/MM/yyyy HH:mm'"
+                   [owlDateTimeTrigger]="dt5">
+            <input class="hidden-input-time" [(ngModel)]="dischargeData.discharge" [owlDateTime]="dt5" >
+
+            <owl-date-time #dt5></owl-date-time>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Principal diagnosis</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Chẩn đoán chính</label>
+        <div class="col-sm-7">
+            <ng-select
+                    style="width: 100%"
+                    [items]="allDiagnosis| async"
+                    [closeOnSelect]="true"
+                    [searchable]="true"
+                    [searchFn]="customSearchDiagnosis"
+                    [bindLabel]="'title'"
+                    bindValue="id"
+                    placeholder="Select Principal diagnosis"
+                    [(ngModel)]="this.dischargeData.principal_diagnosis">
+            </ng-select>
+
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Other diagnoses</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các chẩn đoán khác</label>
+        <div class="col-sm-7">
+            <ng-select
+                    style="width: 100%"
+                    [items]="allDiagnosis | async"
+                    [multiple]="true"
+                    [closeOnSelect]="false"
+                    [searchable]="true"
+                    [bindLabel]="'title'"
+                    bindLabel="title"
+                    bindValue="id"
+                    placeholder="Select Other diagnoses"
+                    [(ngModel)]="dischargeData.other_diagnosis">
+            </ng-select>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Outcome</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Kết quả điều trị</label>
+        <div class="col-sm-7">
+            <select class="form-control form-control-sm"
+                    [(ngModel)]="dischargeData.outcome">
+                <option [value]="1" *ngIf="isEng">Alive and transferred to other hospital</option>
+                <option [value]="1" *ngIf="!isEng">Sống và chuyển đến bệnh viện khác</option>
+                <option [value]="2" *ngIf="isEng">Alive and discharged home</option>
+                <option [value]="2" *ngIf="!isEng">Sống và xuất viện về nhà</option>
+                <option [value]="3" *ngIf="isEng">Died</option>
+                <option [value]="3" *ngIf="!isEng">Tử vong</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="checkOutcome(1)">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Hospital transferred to</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Bệnh viện chuyển đến</label>
+        <div class="col-sm-7">
+            <!--            <select [(ngModel)]="episode.admit_to" class="form-control form-control-sm">-->
+            <!--                <option *ngFor="let hos of listTypeHospital.admission" [ngValue]="hos.id">{{hos.name}}</option>-->
+            <!--            </select>-->
+            <nz-cascader style="width: 100%; text-align: left"
+                         [(ngModel)]="dischargeData.transfer_to"
+                         [nzOptions]="listTypeHospital.transferred"
+                         [nzShowSearch]="true"
+                         [nzShowInput]="true"></nz-cascader>
+
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="checkOutcome(3)">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng"> Was intensive care withdrawn?</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng"> Trẻ có phải xin thôi điều trị tích cực không?</label>
+        <div class="col-sm-7">
+            <mat-radio-group
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group"
+                    [(ngModel)]="dischargeData.is_intensive">
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="checkOutcome(3)">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Principal cause of death</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nguyên nhân tử vong chính</label>
+        <div class="col-sm-7">
+            <select class="form-control form-control-sm" [(ngModel)]="dischargeData.dead_cause">
+                <option [value]="1" *ngIf="isEng">Complication of prematurity</option>
+                <option [value]="1" *ngIf="!isEng">Biến chứng của sinh non</option>
+                <option [value]="2" *ngIf="isEng">Infection</option>
+                <option [value]="2" *ngIf="!isEng">Nhiễm trùng</option>
+                <option [value]="3" *ngIf="isEng">Asphyxia</option>
+                <option [value]="3" *ngIf="!isEng">Ngạt</option>
+                <option [value]="4" *ngIf="isEng">Congenital anomaly</option>
+                <option [value]="4" *ngIf="!isEng">Bất thường bẩm sinh</option>
+                <option [value]="5" *ngIf="isEng">Other cardiorespiratory problem</option>
+                <option [value]="5" *ngIf="!isEng">Các vấn đề tim phổi khác</option>
+                <option [value]="6" *ngIf="isEng">Other neurological problem</option>
+                <option [value]="6" *ngIf="!isEng">Các vấn đề thần kinh khác</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid" *ngIf="checkOutcome(2)">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Feeding at discharge</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Nuôi dưỡng lúc xuất viện</label>
+        <div class="col-sm-7">
+            <select class="form-control form-control-sm" [(ngModel)]="dischargeData.feeding_at_discharge">
+                <option [value]=1 *ngIf="isEng">Breast milk only</option>
+                <option [value]=1 *ngIf="!isEng">Sữa mẹ hoàn toàn</option>
+                <option [value]=2 *ngIf="isEng">Formula milk only</option>
+                <option [value]=2 *ngIf="!isEng">Sữa công thức hoàn toàn</option>
+                <option [value]=3 *ngIf="isEng">Mixed breast and formula milk</option>
+                <option [value]=3 *ngIf="!isEng">Kết hợp sữa mẹ và sữa công thức</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Summary of current problems and reason for transfer</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Tóm tắt các vấn đề còn tồn tại và lý do chuyển nếu chuyển
+            viện</label>
+        <div class="col-sm-7">
+            <textarea style=" border: 1px solid #ced4da !important;
+    border-radius: .2rem !important;" matInput maxlength="500" [(ngModel)]="dischargeData.transfer_summary"></textarea>
+        </div>
+    </div>
+    <div *ngIf="checkOutcome(1)">
+        <div class="title-bg">
+            <span *ngIf="isEng">Respiratory</span>
+            <span *ngIf="!isEng">Hỗ trợ hô hấp</span>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label">FiO2 %</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="dischargeData.transfer_fio2" type="number" max="100" min="21"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Respiratory support </label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Hỗ trợ hô hấp </label>
+            <div class="col-sm-7">
+                <select [(ngModel)]="dischargeData.transfer_respiration_support" class="form-control form-control-sm">
+                    <option [value]="1" *ngIf="isEng">None</option>
+                    <option [value]="1" *ngIf="!isEng">Không</option>
+                    <option [value]="2" *ngIf="isEng">Oxygen aLone</option>
+                    <option [value]="2" *ngIf="!isEng">Chỉ thở oxy</option>
+                    <option [value]="3">CPAP</option>
+                    <option [value]="4" *ngIf="isEng">Non invasive ventilation</option>
+                    <option [value]="4" *ngIf="!isEng">Thở máy không xâm nhập</option>
+                    <option [value]="5" *ngIf="isEng">Intubated and ventilated</option>
+                    <option [value]="5" *ngIf="!isEng">Đặt nội khí quản và thở máy</option>
+                </select>
+            </div>
+        </div>
+        <div class="row-info row container-fluid" *ngIf="checkIf('transfer_respiration_support', 3)">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">CPAP pressure</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Áp lực CPAP</label>
+            <div class="col-sm-7">
+                <input
+                        [(ngModel)]="dischargeData.transfer_cpap_pressure" type="number" min="3" max="15"
+                        class="form-control form-control-sm">
+            </div>
+        </div>
+
+        <div *ngIf="checkIf('transfer_respiration_support', 4)">
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Peak pressure</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Áp lực đỉnh</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_peak_pressure" type="number" min="5" max="50"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">PEEP</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Áp lực dương cuối kỳ thở ra (PEEP)</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_peep" type="number" min="3" max="12"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Ventilator rate</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Tần số máy thở</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_ventilator_rate" type="number" min="3" max="12"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="checkIf('transfer_respiration_support', 5)">
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Tube size</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Kích thước ống</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_tube_size" type="number" min="2" max="6"
+                            step="0.1"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Peak pressure</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Áp lực đỉnh</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_peak_pressure" type="number" min="5" max="50"
+                            step="0.1"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">PEEP</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Áp lực dương cuối kỳ thở ra (PEEP)</label>
+                <div class="col-sm-7">
+                    <input
+                            [(ngModel)]="dischargeData.transfer_peep" type="number" min="2" max="70"
+                            class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+
+        <div class="title-bg">
+            <span>results</span>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was a blood gas done</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được làm khí máu không?</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.transfer_blood_gas">
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+
+        <div *ngIf="dischargeData.transfer_blood_gas">
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time of last blood gas</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ làm khí máu lần cuối</label>
+                <div class="col-sm-7">
+                    <input [value]="dischargeData.transfer_last_blood_gas | date:'dd/MM/yyyy HH:mm'"
+                           [owlDateTimeTrigger]="dt6">
+                    <input class="hidden-input-time" [(ngModel)]="dischargeData.transfer_last_blood_gas" [owlDateTime]="dt6" >
+
+                    <owl-date-time #dt6></owl-date-time>
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">pH</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_blood_gas_ph" type="number" max="6" min="7" step="0.001"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">pCO2</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_blood_gas_pco2" type="number" step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">pO2</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_blood_gas_co2" type="number" step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Base excess</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_blood_gas_base" type="number" step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Was a full blood count done</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được làm công thức máu không? </label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.transfer_full_blood">
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="dischargeData.transfer_full_blood">
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time of last full blood count</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ làm công thức máu lần cuối</label>
+                <div class="col-sm-7">
+
+                    <input [value]="dischargeData.transfer_last_full_blood"
+                           [owlDateTimeTrigger]="dt7">
+                    <input class="hidden-input-time" [(ngModel)]="dischargeData.transfer_last_full_blood" [owlDateTime]="dt7" >
+
+                    <owl-date-time #dt7></owl-date-time>
+                </div>
+            </div>
+
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Hb</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_full_blood_hb" type="number" max="0" min="1000"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">WCC</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_full_blood_wcc" type="number" max="0" min="1000"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Neutrophils</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_full_blood_newtro" type="number" max="0" min="1000"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Platelets</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_full_blood_plate" type="number" max="0" min="1000"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Were electrolytes measured</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Trẻ có được làm điện giải đồ không?</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.transfer_electrolytes">
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="true">Yes</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="true">Có</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="isEng" [value]="false">No</mat-radio-button>
+                    <mat-radio-button class="example-radio-button" *ngIf="!isEng" [value]="false">Không
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <div *ngIf="dischargeData.transfer_electrolytes">
+
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Date and time of last electrolytes</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Ngày và giờ làm điện giải đồ lần cuối</label>
+                <div class="col-sm-7">
+                    <input [value]="dischargeData.transfer_last_electrolytes | date:'dd/MM/yyyy HH:mm'"
+                           [owlDateTimeTrigger]="dt8">
+                    <input class="hidden-input-time" [(ngModel)]="dischargeData.transfer_last_electrolytes" [owlDateTime]="dt8" >
+                    <owl-date-time #dt8></owl-date-time>
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Sodium</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_electrolytes_sodium" type="number" max="110" min="180"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Potassium</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_electrolytes_potassium" type="number" max="1" min="15"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Urea</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_electrolytes_urea" type="number" max="0" min="100"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Calcium</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_electrolytes_calcium" type="number" max="1" min="20"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label">Creatinine</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_electrolytes_creatinine" type="number" max="110"
+                           min="180"
+                           step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Other results of importance </label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các kết quả xét nghiệm quan trọng khác </label>
+            <div class="col-sm-7">
+                <input
+                        [(ngModel)]="dischargeData.transfer_other_result" type="text" maxlength="100"
+                        class="form-control form-control-sm">
+            </div>
+        </div>
+
+        <div class="title-bg">
+            <span>drugs</span>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Current antibiotics with date started</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các loại kháng sinh hiện đang dùng và ngày bắt
+                đầu</label>
+            <div class="col-sm-7">
+                <input
+                        [(ngModel)]="dischargeData.transfer_current_antibiotics" type="text" maxlength="50"
+                        class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Other current drugs</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các loại thuốc hiện đang dùng khác</label>
+            <div class="col-sm-7">
+                <input
+                        [(ngModel)]="dischargeData.transfer_current_drugs" type="text" maxlength="100"
+                        class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Positive cultures</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Các kết quả nuôi cấy dương tính</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="dischargeData.transfer_positive_culture" type="text" maxlength="50"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+
+        <div class="title-bg">
+            <span>Fluids and feeds</span>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Fluid volume (mls/kg/day)</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Thể tích dịch (ml/kg/ngày)</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="dischargeData.transfer_fluid_volume" type="number"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Intravenous fluids</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Dịch truyền tĩnh mạch</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.transfer_intravenous_fluid">
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="true">{{isEng ? 'Yes' : 'Có'}}</mat-radio-button>
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="false">{{isEng ? 'No' : 'Không'}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div *ngIf="dischargeData.transfer_intravenous_fluid">
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Type of fluid</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Loại dịch truyền</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_fluid_type" type="text" maxlength="25"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="row-info row container-fluid">
+                <label class="col-sm-3 col-form-label" *ngIf="isEng">Intravenous fluid volume (mls/hour)</label>
+                <label class="col-sm-3 col-form-label" *ngIf="!isEng">Thể tích dịch truyền tĩnh mạch (ml/giờ)</label>
+                <div class="col-sm-7">
+                    <input [(ngModel)]="dischargeData.transfer_intravenous_fluid_volume" type="number"
+                           max="100" min="0" step="0.1"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+
+        <div class="row-info row container-fluid">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Milk</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Sữa</label>
+            <div class="col-sm-7">
+                <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="dischargeData.transfer_milk">
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="true">{{isEng ? 'Yes' : 'Có'}}</mat-radio-button>
+                    <mat-radio-button class="example-radio-button"
+                                      [value]="false">{{isEng ? 'No' : 'Không'}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="row-info row container-fluid" *ngIf="dischargeData.transfer_milk">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Type of milk</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Loại sữa</label>
+            <div class="col-sm-7">
+                <mat-select id="type-of-milk" class="form-control form-control-sm"
+                            [(value)]="dischargeData.transfer_milk_types" multiple>
+                    <mat-option [value]="1" *ngIf="isEng">Mother's own breast milk</mat-option>
+                    <mat-option [value]="1" *ngIf="!isEng">Sữa của mẹk</mat-option>
+                    <mat-option [value]="2" *ngIf="isEng">Donor breast milk</mat-option>
+                    <mat-option [value]="2" *ngIf="!isEng">Sữa mẹ hiến tặng</mat-option>
+                    <mat-option [value]="3" *ngIf="isEng">Sữa công thức</mat-option>
+                    <mat-option [value]="4" *ngIf="isEng">Other</mat-option>
+                    <mat-option [value]="4" *ngIf="!isEng">Sữa khác</mat-option>
+                </mat-select>
+            </div>
+        </div>
+        <div class="row-info row container-fluid" *ngIf="dischargeData.transfer_milk_types.indexOf(4)!== -1">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Other Type of milk</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Loại sữa khác</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="dischargeData.transfer_milk_other" type="text" maxlength="25"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+        <div class="row-info row container-fluid" *ngIf="dischargeData.transfer_milk">
+            <label class="col-sm-3 col-form-label" *ngIf="isEng">Volume of milk (mls/hr)</label>
+            <label class="col-sm-3 col-form-label" *ngIf="!isEng">Lượng sữa (ml/giờ)</label>
+            <div class="col-sm-7">
+                <input [(ngModel)]="dischargeData.transfer_milk_volume" type="number"
+                       max="100" min="0" step="0.1"
+                       class="form-control form-control-sm">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="action-btn" *ngIf="!readonlyDischarge">
+    <div class="row-info row container-fluid">
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-danger btn-sm float-right" (click)="dischargeEpisode()" *ngIf="isEng">
+                Save Discharge
+            </button>
+            <button type="button" class="btn btn-danger btn-sm float-right" (click)="dischargeEpisode()" *ngIf="!isEng">
+                Lưu xuất viện
+            </button>
+
+        </div>
+    </div>
+</div>

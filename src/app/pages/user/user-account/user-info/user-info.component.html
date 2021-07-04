@@ -1,0 +1,79 @@
+<div id="content">
+    <div class="action-btn">
+        <button (click)="back()" type="button" class="btn btn-primary btn-sm">Back</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="openModal(passwordModal)">Change password
+        </button>
+    </div>
+
+    <div class="title-bg">
+        <span>personal info</span>
+    </div>
+    <div class="personal-info">
+        <div class="row row-info">
+            <div class="offset-sm-2 col-sm-4">Name</div>
+            <div class="col-sm-4"><input [(ngModel)]="profile.name" class="form-control form-control-sm" placeholder="">
+            </div>
+        </div>
+        <div class="row row-info">
+            <div class="offset-sm-2 col-sm-4">Email</div>
+            <div class="col-sm-4"><input disabled [(ngModel)]="profile.email" class="form-control form-control-sm"
+                                         placeholder=""></div>
+        </div>
+        <div class="row row-info">
+            <div class="offset-sm-2 col-sm-4">Phone number</div>
+            <div class="col-sm-4"><input [(ngModel)]="profile.phone" class="form-control form-control-sm"
+                                         placeholder=""></div>
+        </div>
+        <div class="text-right">
+            <button (click)="updateInfo()" type="button" class="btn btn-success btn-sm">Save</button>
+
+        </div>
+
+
+        <ng-template #passwordModal>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Change password</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row row-info">
+                    <div class=" col-sm-4">Current password</div>
+                    <div class="col-sm-8">
+                        <input [(ngModel)]="currentPass" type="text" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="row row-info">
+                    <div class=" col-sm-4">New password</div>
+                    <div class="col-sm-8">
+                        <input [(ngModel)]="newPass" type="text" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button (click)="modalRef.hide()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                </button>
+                <button (click)="changePass()" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </ng-template>
+
+    </div>
+    <div class="title-bg">
+        <span>hospital & permission</span>
+    </div>
+    <div class="permission">
+        <div class="row row-info">
+            <div class="offset-sm-2 col-sm-4"><b>HOSPITAL</b></div>
+            <div class="col-sm-4"><b>PERMISSION</b></div>
+        </div>
+        <div *ngFor="let hospital of profile.hospitals" class="row row-info">
+            <div class="offset-sm-2 col-sm-4">{{hospital.name}}</div>
+            <div class="col-sm-4">{{hospital.role}}</div>
+
+        </div>
+
+    </div>
+</div>
+
+

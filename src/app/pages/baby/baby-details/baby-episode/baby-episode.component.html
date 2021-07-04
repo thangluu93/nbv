@@ -1,0 +1,117 @@
+<div class="title-bg">
+    <span>{{isEng ? 'admission (completed on admission)': 'NHẬP VIỆN (CẦN HOÀN TẤT THÔNG TIN TẠI BƯỚC NÀY)'}}</span>
+</div>
+<div id="admission">
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label" *ngIf="isEng">Hospital of this admission</label>
+        <label class="col-sm-3 col-form-label" *ngIf="!isEng">Bệnh viện lần nhập viện này</label>
+        <div class="col-sm-7">
+            <!--            <select [(ngModel)]="episode.admit_to" class="form-control form-control-sm">-->
+            <!--                <option *ngFor="let hos of listTypeHospital.admission" [ngValue]="hos.id">{{hos.name}}</option>-->
+            <!--            </select>-->
+            <nz-cascader style="width: 100%; text-align: left"
+                         [(ngModel)]="episode.admit_to"
+                         [nzOptions]="listTypeHospital.admission"
+                         [nzShowSearch]="true"
+                         [nzShowInput]="true"></nz-cascader>
+
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label">{{isEng ? 'Local Hospital ID (if exists)' : 'Mã số tại bệnh viện địa phương\n'}}</label>
+        <div class="col-sm-7">
+            <input [(ngModel)]="episode.local_hospital_id" type="text" maxlength="15"
+                   class="form-control form-control-sm">
+        </div>
+    </div>
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label">{{isEng ? 'Date and time of admission' : 'Ngày và giờ nhập viện'}}</label>
+        <div class="col-sm-7">
+            <!--            <input type="text" class="form-control form-control-sm"-->
+            <!--                   bsDatepicker [(ngModel)]="episode.admit_time"-->
+            <!--                   (bsValueChange)="checkDateAdmission()"-->
+            <!--                   [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-blue' }">-->
+            <input value="{{formattedAdmitTime | date: 'dd/MM/yyyy HH:mm'}}"
+                   [owlDateTimeTrigger]="dt8" >
+            <input class="hidden-input-time" [(ngModel)]="formattedAdmitTime" [owlDateTime]="dt8">
+            <owl-date-time #dt8 ></owl-date-time>
+            <mat-error *ngIf="isInvalidDateAdmission">Date/time of admission must be after date/time of birth
+            </mat-error>
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label">{{isEng ? 'Weight at admission (g)' : 'Cân nặng lúc nhập viện (g)'}}</label>
+        <div class="col-sm-1">
+            <input [(ngModel)]="episode.weight" type="number" min="300" max="10000"
+                   class="form-control form-control-sm">
+        </div>
+
+        <label class="col-sm-2 col-form-label">{{isEng ? 'Head circumference (cms)' : 'Vòng đầu (cm)'}} </label>
+        <div class="col-sm-1">
+            <input [(ngModel)]="episode.head_circumference" type="number" min="20" max="60" step="0.1"
+                   class="form-control form-control-sm">
+        </div>
+        <label class="col-sm-2 col-form-label">{{isEng ? 'Temperature on admission' : 'Nhiệt độ lúc nhập viện'}}</label>
+        <div class="col-sm-1">
+            <input [(ngModel)]="episode.temperature" type="number" min="30" max="50" step="0.1"
+                   class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="row-info row container-fluid">
+        <label class="col-sm-3 col-form-label">{{isEng ? 'Admitted from' : 'Nhập viện từ'}}</label>
+        <div class="col-sm-7">
+            <!--            <mat-select [(ngModel)]="episode.admit_from" class="form-control form-control-sm">-->
+            <!--                <mat-option *ngFor="let hos of listTypeHospital.admitted" [ngValue]="hos.id">{{hos.name}}</mat-option>-->
+
+            <!--            </mat-select>-->
+            <nz-cascader style="width: 100%; text-align: left"
+                         [(ngModel)]="episode.admit_from"
+                         [nzOptions]="listTypeHospital.admitted"
+                         [nzShowSearch]="true"
+                         [nzShowInput]="true"></nz-cascader>
+            &nbsp;
+        </div>
+    </div>
+
+
+    <div class="row-info row container-fluid" *ngIf="episode.admit_from && episode.admit_from[1] === 1">
+        <label class="col-sm-3 col-form-label">{{isEng ? 'Admitted from - hospital name' : 'Nhập viện từ bệnh viện'}}</label>
+        <div class="col-sm-7">
+            <input [(ngModel)]="episode.admit_from_other" type="text" class="form-control form-control-sm">
+        </div>
+    </div>
+
+    <div class="action-btn">
+        <div class="row-info row container-fluid">
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-danger btn-sm float-right"
+                        *ngIf="babyId && isInEpisode &&!isShowDischarge && !canReadonlyDischarge"
+                        (click)="showDischarge()">
+                    {{isEng ? 'Discharge' : 'Xuất viện'}}
+                </button>
+                <button *ngIf="!isShowDischarge  && !canReadonlyDischarge" (click)="createBaby()" type="button"
+                        class="btn btn-success btn-sm float-right">{{isEng ? 'Save' : 'Lưu'}}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm float-right"
+                        *ngIf="isShowDischarge && !canReadonlyDischarge"
+                        (click)="closeDischarge()">
+                    {{isEng ? 'Cancel Discharge' : 'Hủy xuất viện'}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-baby-discharge-episodes
+        *ngIf="(isShowDischarge || canReadonlyDischarge) && !(isShowDischarge && canReadonlyDischarge)"
+        [listTypeHospital]="listTypeHospital"
+        [dischargeData]="dischargeData"
+        [readonlyDischarge]="canReadonlyDischarge"></app-baby-discharge-episodes>
+
+
+

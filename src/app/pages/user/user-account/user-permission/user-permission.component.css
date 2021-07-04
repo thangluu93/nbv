@@ -1,0 +1,7 @@
+.remove-permission {
+  margin-left: 5px;
+}
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}

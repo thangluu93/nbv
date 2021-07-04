@@ -1,0 +1,69 @@
+#admission, #discharge, #neonatal-course .col-form-label {
+    text-align: right;
+}
+
+mat-select {
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+}
+
+input{
+    width: 100%;
+}
+
+#admission, #discharge, #neonatal-course {
+    width: calc(100vw - 270px);
+    padding: 20px;
+    /*min-height: 100vh;*/
+    transition: all 0.3s;
+}
+
+#admission, #discharge, #neonatal-course .col-form-label {
+    text-align: right;
+}
+
+.btn.btn-outline-secondary.calendar.fa.fa-calendar {
+    border: 1px solid #ced4da;
+}
+
+#admission, #discharge, #neonatal-course .custom-control.custom-radio.custom-control-inline {
+    padding-top: 5px;
+}
+
+div#myTabContent {
+    padding-top: 15px;
+}
+
+.custom-control-check {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+    float: left;
+    width: 45%;
+}
+
+.col-sm-7 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.mat-radio-button {
+    margin: 0 15px;
+}
+
+.custom-control-check {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+    float: left;
+    width: 45%;
+}
+
+.check-box {
+    display: block;
+    text-align: justify
+}
+

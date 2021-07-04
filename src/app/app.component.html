@@ -1,0 +1,67 @@
+<div class="wrapper">
+    <nav id="sidebar" *ngIf="isValid">
+        <div class="sticky-container">
+
+            <div class="sidebar-header">
+                <img src="https://www.newbornsvietnam.org/wp-content/themes/newborns/images/logo-194.png">
+            </div>
+            <div class="lang">
+                <img src="./assets/images/en_flag.svg" (click)="changeLang('en')" alt="">
+                <img src="./assets/images/vi_flag.svg" (click)="changeLang('vi')" alt="">
+            </div>
+            <ul class="list-unstyled components">
+
+                <li>
+                    <a routerLink="/baby" routerLinkActive="active-link" *ngIf="isEng">baby select list</a>
+                    <a routerLink="/baby" routerLinkActive="active-link" *ngIf="!isEng">danh sách em bé</a>
+                </li>
+                <li>
+                    <a routerLinkActive="active-link" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="isEng">user management</a>
+                    <a routerLinkActive="active-link" href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="!isEng">quản lý nhân sự</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li class="">
+                            <a routerLink="/user/all" routerLinkActive="active-link" *ngIf="isEng">User Account</a>
+                            <a routerLink="/user/all" routerLinkActive="active-link" *ngIf="!isEng">Tài khoản nhân sự</a>
+                        </li>
+                        <li class="">
+                            <a routerLink="/user/activity" routerLinkActive="active-link" *ngIf="isEng">User Activity</a>
+                            <a routerLink="/user/activity" routerLinkActive="active-link" *ngIf="!isEng">Hoạt động nhân sự</a>
+                        </li>
+                    </ul>
+                </li>
+                <li *ngIf="isNetAd">
+                    <a routerLinkActive="active-link" href="#dataSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="isEng">data management</a>
+                    <a routerLinkActive="active-link" href="#dataSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" *ngIf="!isEng">quản lí dữ liệu</a>
+                    <ul class="collapse list-unstyled" id="dataSubmenu">
+                        <li class="">
+                            <a routerLink="/data-management/diagnosis" routerLinkActive="active-link" *ngIf="isEng">Diagnosis Management</a>
+                            <a routerLink="/data-management/diagnosis" routerLinkActive="active-link" *ngIf="!isEng">Quản lí Chuẩn đoán</a>
+                        </li>
+                        <li class="">
+                            <a routerLink="/data-management/hospital" routerLinkActive="active-link" *ngIf="isEng">Hospital Management</a>
+                            <a routerLink="/data-management/hospital" routerLinkActive="active-link" *ngIf="!isEng">Quản lí Bệnh viện</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a routerLink="/user/info" routerLinkActive="active-link" *ngIf="isEng">personal info</a>
+                    <a routerLink="/user/info" routerLinkActive="active-link" *ngIf="!isEng">Thông tin cá nhân</a>
+                </li>
+                <li>
+                    <a (click)="logout()" *ngIf="isEng">log out</a>
+                    <a (click)="logout()" *ngIf="!isEng">đăng xuất</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>
+
+
+
+<notifier-container></notifier-container>
+
+
+
+

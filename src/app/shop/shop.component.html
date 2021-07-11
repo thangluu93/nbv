@@ -1,0 +1,70 @@
+<div class="shop">
+  <div class=shop-header-cover>
+    <div class="shop-title">
+      shop
+    </div>
+    <div #cateList class="shop-category">
+
+      <a href="/shop/all">
+        <div id="all" class="item">
+          All
+        </div>
+      </a>
+
+      <a href="/shop/scrunchies">
+        <div id="scrunchies" class="item">
+          Scrunchies
+        </div>
+      </a>
+
+      <a href="/shop/daily-tops">
+        <div id="daily-tops" class="item">
+          Daily tops
+        </div>
+      </a>
+
+      <a href="/shop/tube-tops">
+        <div id="tube-tops" class="item">
+          Tube tops
+        </div>
+      </a>
+
+      <a href="/shop/pouches">
+        <div id="pouches" class="item">
+          Pouches
+        </div>
+      </a>
+
+      <a href="/shop/bags">
+        <div id="bags" class="item">
+          Bags
+        </div>
+      </a>
+
+      <a href="/shop/masks">
+        <div id="masks" class="item">
+          Masks
+        </div>
+      </a>
+
+      <a href="/shop/others">
+        <div id="others" class="item">
+          Others
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <div class="shop-body">
+    <div class="side-menu">
+
+    </div>
+    <div class="shop-listing">
+      <app-shop-listing></app-shop-listing>
+      <div class="cover-shop-pagination">
+        <app-pagination [pageSubject]="pageSubject"></app-pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

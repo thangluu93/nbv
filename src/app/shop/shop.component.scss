@@ -1,0 +1,55 @@
+a:hover {
+  text-decoration: none;
+}
+
+.shop-header-cover {
+  border-bottom: 1px solid #DAA48C;
+}
+
+.shop-title {
+  font-family: SVN-Gotham, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 80px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.shop-body {
+  display: flex;
+  border-bottom: 1px solid #DAA48C;
+}
+
+.side-menu {
+  width: 340px;
+  border-right: 1px solid #DAA48C;
+}
+
+.shop-listing {
+  margin: 50px auto;
+}
+
+.cover-shop-pagination {
+  margin-top: 53px;
+  float: right;
+}
+
+.shop-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 40px;
+}
+
+.shop-category .item {
+  color: #111111;
+  font-family: HeptaSlab, serif;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.shop-category .item.active {
+  color: #DAA48C;
+  border-bottom: 1px solid #DAA48C;
+}

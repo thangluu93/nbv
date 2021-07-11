@@ -1,0 +1,5 @@
+<div class="shop-listing-cover">
+  <div *ngFor="let item of menu$ | async " class="cover-item">
+    <app-shop-item [data]="item"></app-shop-item>
+  </div>
+</div>

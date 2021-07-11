@@ -1,0 +1,34 @@
+<div class="cover-page">
+  <div class="cover-me-page">
+    <div class="title">account</div>
+    <div class="cover-body-me-page">
+
+      <div class="cover-tabs">
+
+        <div [class.active]="tabs===TabList.accountInformation" class="tab tab-account"
+             (click)="changeTab(TabList.accountInformation)">
+          Account Information
+        </div>
+
+        <div class="tab tab-history" [class.active]="tabs===TabList.orderHistory"
+             (click)="changeTab(TabList.orderHistory)">
+          Order History
+        </div>
+
+        <div class="tab tab-processing" [class.active]="tabs===TabList.orderProcessing"
+             (click)="changeTab(TabList.orderProcessing)">
+          Order Processing
+        </div>
+
+      </div>
+
+      <div class="tab-info-cover">
+        <ng-template [ngIf]="tabs===TabList.accountInformation" class="tab-info">
+          <app-account-info-tab></app-account-info-tab>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+
+</div>

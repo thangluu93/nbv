@@ -1,0 +1,87 @@
+<div class="cover-info">
+  <form action="" [formGroup]="accountForm">
+    <div class="info-left">
+      <div class=" form-group row input-form">
+        <label for="name-input">
+          Your name
+        </label>
+        <input id="name-input" type="text" formControlName="name">
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="email-input">
+          Email Address
+        </label>
+        <input id="email-input" type="text" formControlName="email">
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="password-input">
+          Password
+        </label>
+        <input id="password-input" type="password" formControlName="password">
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="confirm-password-input">
+          Confirm Password
+        </label>
+        <input id="confirm-password-input" type="password">
+      </div>
+
+    </div>
+
+
+    <div class="info-right">
+      <div class=" form-group row input-form">
+        <label for="phone-input">
+          Phone number
+        </label>
+        <input id="phone-input" type="text" formControlName="phoneNumber">
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="address-input">
+          Address
+        </label>
+        <input id="address-input" type="text" formControlName="address">
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="province-input">
+          Province
+        </label>
+        <select id="province-input" formControlName="province" (change)="getDistricts()">
+          <option *ngFor="let province of provincesSubscriber | async"
+                  [ngValue]="province">{{province.name}}</option>
+        </select>
+        <!--        <input id="province-input" type="text" formControlName="province">-->
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="district-input">
+          District
+        </label>
+        <select id="district-input" formControlName="district" (change)="getWards()">
+          <option *ngFor="let district of districtsSubscriber | async"
+                  [ngValue]="district">{{district.name}}</option>
+        </select>
+<!--        <input id="district-input" type="text" formControlName="district">-->
+      </div>
+
+      <div class=" form-group row input-form">
+        <label for="ward-input">
+          Ward
+        </label>
+        <select id="ward-input" formControlName="ward">
+          <option *ngFor="let ward of wardsSubscriber | async"
+                  [ngValue]="ward">{{ward.name}}</option>
+        </select>
+<!--        <input id="ward-input" type="text" formControlName="ward">-->
+      </div>
+
+    </div>
+
+  </form>
+  <button (click)="updateProfile()"> asd</button>
+</div>

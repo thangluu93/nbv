@@ -1,0 +1,20 @@
+<nav class="nav-header">
+  <div class="header-cover">
+    <div class="header-button-navigate">
+      <a href="">shop</a>
+      <a href="">collection</a>
+      <a href="">about</a>
+    </div>
+
+    <img src="./assets/img/logo.svg" alt="cay kim soi chi">
+
+    <div class="header-activity-btn">
+      <img src="./assets/img/search.png" alt="">
+      <img src="./assets/img/user.png" alt="">
+      <img src="./assets/img/bag.png" alt="">
+    </div>
+  </div>
+  <div class="directory-navigation">
+    <a [href]="(breadcrumb$ | async)?.path">{{(breadcrumb$ | async)?.label}}</a>
+  </div>
+</nav>

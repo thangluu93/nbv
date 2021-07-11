@@ -1,0 +1,28 @@
+<div class="cover-shop-item">
+  <div class="shop-cover-img" (click)="loadProductDetails()">
+    <div class="tag-cover">
+      <img id="tag-best-seller" src="./../assets/img/tag_best_seller.svg" alt="">
+      <img id="tag-new" src="./../assets/img/tag_new.svg" alt="">
+    </div>
+    <img
+      class="product-image"
+      [src]="productDetails.image"
+      alt="">
+  </div>
+  <div class="cover-item-footer">
+    <div class="shop-item-detail" (click)="loadProductDetails()">
+      <div class="title">
+        {{productDetails.name?.vi}}
+      </div>
+      <div class="description">
+        {{productDetails.price | currency:'':'':'3.0'}} vnd
+      </div>
+    </div>
+    <div class="item-add-to-bag" (click)="addToCart()">
+      <div class="logo-add-to-bag">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div>{{cart$ | json}}</div>-->

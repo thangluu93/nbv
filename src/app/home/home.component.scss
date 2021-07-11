@@ -1,0 +1,67 @@
+.home-cover-highlight-component {
+  height: fit-content;
+}
+
+.home-cover-trending {
+  background: #DAA48C;
+  padding: 25px 0 40px;
+  height: fit-content;
+}
+
+.slide {
+  margin: 0 10px
+}
+
+.home-trending-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0 75px;
+  overflow: visible;
+}
+
+app-trending-item {
+  margin: 0 10px;
+}
+
+.home-trending-title {
+  font-family: SVN-Gotham, sans-serif;
+  width: 100%;
+  text-align: center;
+  margin: 0 0 60px;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FEFBF4;
+}
+
+.home-shop-title {
+  font-family: SVN-Gotham, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 80px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #DAA48C;
+}
+
+.home-shop-body {
+  display: flex;
+  border-bottom: 1px solid #DAA48C;
+}
+
+.side-menu {
+  width: 340px;
+  border-right: 1px solid #DAA48C;
+}
+
+.home-shop-listing {
+  margin: 50px auto;
+}
+
+.cover-home-pagination {
+  margin-top: 53px;
+  float: right;
+}

@@ -1,0 +1,56 @@
+<div class="cover-product-details">
+  <div class="left-cover">
+    <div class="cover-img-btn-list">
+      <div class="button-img" *ngFor="let img of image" [ngClass]="{'active': img ===(previewImageSub|async)}">
+        <img src="{{img}}" alt="" (click)="previewImage(img)">
+      </div>
+    </div>
+    <div class="cover-img-preview">
+      <img src="{{previewImageSub | async}}" alt="">
+    </div>
+  </div>
+  <div class="right-cover">
+    <div class="cover-info">
+
+      <div class="cover-product-details-info">
+        <div class="title-product">
+          {{productDetails.name?.vi}}
+        </div>
+        <div class="product-price">
+          {{productDetails.price}}
+        </div>
+        <div class="product-description">
+          {{productDetails.description?.vi}}
+        </div>
+      </div>
+
+      <div class="size-cover" *ngIf="list_size.length > 0">
+        <div class="size-label">SIZE</div>
+        <div class="list-size-wrapper">
+          <div class="radio-wrapper" *ngFor="let s of list_size">
+            <input type="radio" name="size" value="headaches" id="{{s.val}}" (change)="selectSize(s)">
+            <label for="{{s.val}}">{{s.code}}</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-cover" *ngIf="list_color.length>0">
+        <div class="size-label">COLOR</div>
+        <div class="list-size-wrapper">
+          <div class="color-wrapper" *ngFor="let s of list_color">
+            <input type="radio" name="color" [attr.id]="s.val" (change)="selectColor(s)">
+            <div class="cover-label-color">
+              <label for="{{s.val}}" [style.background]="s.code" ></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div #addToCartRef class="add-to-cart-btn" (click)="addToCart()">
+        ADD TO BAG
+      </div>
+    </div>
+
+
+  </div>
+</div>

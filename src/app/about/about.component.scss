@@ -1,0 +1,140 @@
+.cover-about {
+  border-bottom: 1px solid #DAA48C;
+}
+
+.cover-story {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-story img {
+  max-width: 298px;
+  max-height: 193px;
+  object-fit: contain;
+}
+
+.cover-story .title {
+  width: fit-content;
+  font-family: SVN-Gotham, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #4667A6;
+  margin: 75px 0 40px;
+}
+
+.story-1, .story-2 {
+  max-width: 500px;
+  text-align: center;
+  font-family: Hepta Slab, serif;
+  font-size: 14px;
+  line-height: 23px;
+  letter-spacing: 0.1em;
+  color: #000000;
+}
+
+.story-1 {
+  margin-bottom: 80px;
+}
+
+.story-2 {
+  margin-bottom: 100px;
+}
+
+
+.cover-our-manifesto {
+  background: #DAA48C;
+  position: relative;
+}
+
+.cover-our-manifesto .title {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 40px 0;
+  font-family: SVN-Gotham, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #FEFBF4;
+}
+
+.cover-sub-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cover-sub-header img {
+  width: 30%;
+  height: auto;
+  margin-bottom: 70px;
+}
+
+.cover-meet-the-team {
+  width: 100%;
+}
+
+.cover-meet-the-team .title {
+  width: fit-content;
+  width: -webkit-fit-content;
+  font-family: SVN-Gotham, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4667A6;
+  margin: 0 auto;
+}
+
+.content-cover .name-founder {
+  font-family: HeptaSlab-SemiBold, sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4667A6;
+}
+
+.cover-content-meet-the-team {
+  margin: 50px 0 250px;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.title-name {
+  margin-top: 20px;
+  font-family: HeptaSlab-SemiBold, sans-serif;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  width: fit-content;
+  background: #E9D1E1;
+  color: #4667A6;
+  padding: 6px 7px;
+}
+
+.title-description {
+  margin-top: 20px;
+  font-family: Hepta Slab, sans-serif;
+  font-size: 14px;
+  line-height: 23px;
+  letter-spacing: 0.1em;
+  color: #000000;
+  max-width: 422px;
+  height: auto;
+}

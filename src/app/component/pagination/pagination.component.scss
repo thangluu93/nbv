@@ -1,0 +1,37 @@
+.cover-pagination {
+  display: inline-flex;
+  display: -webkit-inline-flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 310px;
+}
+
+.cover-next-arrow, .cover-prev-arrow {
+  height: 100%;
+  width: 34px;
+  cursor: pointer;
+}
+
+.cover-page-number {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cover-page-number div{
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 34px;
+  vertical-align: middle;
+  font-family: Hepta Slab, serif;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.current-page {
+  color: #DAA48C;
+}

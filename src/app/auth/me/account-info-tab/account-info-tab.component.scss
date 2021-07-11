@@ -1,0 +1,51 @@
+form {
+  width: 100%;
+}
+
+.cover-info form{
+  display: flex;
+  flex-direction: row;
+  padding-top: 45px;
+}
+
+.info-left, .info-right {
+  width: 45% ;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-left {
+  border-right: 1px solid #DAA48C;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  margin: 35px 0;
+}
+
+.input-form label {
+  font-family: SVN-Gotham, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.05em;
+  color: #C98B70;
+}
+
+.input-form input, select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #DAA48C;
+}
+
+
+small {
+  padding-top: 20px;
+  font-family: SVN-Gotham, sans-serif;
+  font-size: 14px;
+  line-height: 13px;
+  text-transform: capitalize;
+  color: #E02020;
+}
